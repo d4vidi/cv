@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Amit Davidi — Interactive CV (Pop)</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./cv-data.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#E3EAF5;color:#17172B;font-family:'DM Sans',system-ui,sans-serif}
+a{color:#2438C9}a:hover{color:#17172B}
+.fd{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.03em}
+.fm{font-family:'DM Mono',monospace}
+.muted{color:#4A4A63}.soft{color:#2B2B45}
+.lead strong{font-weight:700;color:#17172B;background:#FFF1A8;padding:0 4px;border-radius:4px}
+.bubble{position:relative;width:100%;height:100%;border:2px solid #17172B;margin:0;padding:8%;border-radius:50%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;color:#17172B;cursor:pointer;background:var(--tint);box-shadow:5px 6px 0 #17172B;transition:transform .35s cubic-bezier(.3,1.4,.4,1),box-shadow .35s cubic-bezier(.3,1.4,.4,1),background-color .25s ease;font-family:inherit}
+.bubble:hover,.bubble:focus-visible{background:var(--hue);transform:translate(-5px,-7px) scale(1.06);box-shadow:13px 16px 0 #17172B;z-index:6;outline:none}
+.bubble:focus-visible{box-shadow:13px 16px 0 #17172B,0 0 0 4px #E3EAF5,0 0 0 7px #2438C9}
+.bubble:active{transform:translate(2px,3px);box-shadow:2px 2px 0 #17172B}
+.sub{box-shadow:3px 4px 0 #17172B}
+.nm{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.03em;line-height:1}
+.rl{font-weight:700;line-height:1.2}
+.du{font-family:'DM Mono',monospace;line-height:1.2}
+.yr{font-family:'DM Mono',monospace;font-size:13px;color:#4A4A63;white-space:nowrap;display:flex;flex-direction:column;gap:6px}
+.yr b{font-weight:500;color:#17172B;font-size:14px;background:#FFFFFF;border:2px solid #17172B;border-radius:999px;padding:4px 12px;box-shadow:3px 3px 0 #17172B;align-self:flex-start}
+.yr.r b{align-self:flex-end}
+.subwrap{position:absolute;z-index:3}
+.subwrap:hover{z-index:7}
+.float{animation:drift 7s ease-in-out infinite}
+.float-sm{animation:drift-sm 4.5s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(0,-10px) rotate(-1.5deg)}}
+@keyframes drift-sm{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-5px)}}
+.sect{border-top:2px dashed #17172B}
+.tile{background:#FFFFFF;border:2px solid #17172B;border-radius:20px;box-shadow:5px 6px 0 #17172B}
+.scrim{animation:fade .2s ease both;background:rgba(23,23,43,.55)}
+.card{animation:pop .5s cubic-bezier(.3,1.5,.4,1) both;background:#FFFFFF;border:2px solid #17172B;box-shadow:12px 14px 0 #17172B}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(24px) rotate(-2deg) scale(.92)}to{opacity:1;transform:none}}
+.x{width:44px;height:44px;border-radius:50%;border:2px solid #17172B;background:#FFF1A8;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#17172B;flex:none;box-shadow:2px 3px 0 #17172B;transition:transform .2s,box-shadow .2s}
+.x:hover{transform:translate(-2px,-2px);box-shadow:4px 5px 0 #17172B}
+.chip{color:#17172B;border:2px solid #17172B}
+.back{border:2px solid #17172B;background:#FFFFFF;color:#17172B;box-shadow:3px 3px 0 #17172B}
+.back:hover{background:#FFF1A8}
+.rolebtn:hover .rt{text-decoration:underline}
+@media (prefers-reduced-motion: reduce){.float,.float-sm,.scrim,.card{animation:none}.bubble{transition:none}}
+@media (max-width:640px){.sub .du{display:none}.yr{font-size:11px}.yr b{font-size:12px}}
+</style>
+</helmet>
+
+<div style="max-width: 1080px; margin: 0 auto; padding: 72px 24px 96px; box-sizing: border-box">
+
+  <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <div class="fm" style="align-self: flex-start; font-size: 13px; background: #17172B; color: #FFFFFF; padding: 4px 12px; border-radius: 999px">Curriculum vitae · 2002 — 2026</div>
+      <h1 class="fd" style="margin: 0; font-size: clamp(48px, 9vw, 104px); line-height: 0.92">Amit Davidi</h1>
+      <p class="soft" style="margin: 0; font-size: 19px; font-weight: 500">Motion &amp; Visual-FX Developer · Mobile apps &amp; dev-tools</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px; max-width: 320px; font-size: 14px; line-height: 1.5; align-items: flex-start">
+      <span class="fm muted" style="font-size: 13px">Israel</span>
+      <a href="https://www.linkedin.com/in/amit-davidi-6684a14/" target="_blank" rel="noopener" style="font-weight: 700; font-size: 15px">linkedin.com/in/amit-davidi-6684a14 ↗</a>
+    </div>
+  </header>
+
+  <p class="lead soft" style="margin: -24px 0 72px; font-size: 19px; line-height: 1.7; max-width: 906px">Accomplished software engineer with <strong>20+ years</strong> of expertise in <strong>UI motion &amp; visual effects</strong>, mobile development tools, <strong>Android</strong>, <strong>React Native</strong>, real-time backends, and embedded systems.<br>Spent more than ten years at <strong>Wix</strong>, leading <a href="https://github.com/wix/detox" target="_blank" rel="noopener" style="font-weight: 700">Detox</a>: the company’s flagship open-source project. Most recently directed UI motion &amp; visual effects initiatives within Wix’s Design Studio.</p>
+
+  <main style="display: flex; flex-direction: column">
+
+    <div style="display: flex; align-items: center; gap: 24px; padding-left: 3%">
+      <div class="float" style="position: relative; width: min(400px, 60vw); height: min(400px, 60vw); flex: none">
+        <button class="bubble" onClick="{{openWix}}" style="--tint: #FFF1A8; --hue: #FFD400">
+          <span class="nm" style="font-size: clamp(24px, 8.4vw, 64px)">Wix</span>
+          <span class="rl" style="font-size: clamp(10px, 2.2vw, 15px)">3 major roles</span>
+          <span class="du" style="font-size: clamp(10px, 2vw, 14px)">10 yrs 5 mos</span>
+        </button>
+        <div class="subwrap float-sm" style="left: 73.3%; top: -0.8%; width: 21%; height: 21%; animation-delay: -1s">
+          <button class="bubble sub" onClick="{{openStudio}}" style="--tint: #FFD9A3; --hue: #FF9E1B; padding: 6%">
+            <span class="nm" style="font-size: clamp(8px, 1.6vw, 12px); letter-spacing: -0.01em">Design Studio</span>
+            <span class="du" style="font-size: clamp(8px, 1.5vw, 10px)">6 mos</span>
+          </button>
+        </div>
+        <div class="subwrap float-sm" style="left: 89.3%; top: 31.3%; width: 35.75%; height: 35.75%; animation-delay: -3s">
+          <button class="bubble sub" onClick="{{openDetox}}" style="--tint: #FFD9A3; --hue: #FF9E1B">
+            <span class="nm" style="font-size: clamp(9px, 1.9vw, 14px); letter-spacing: -0.01em">Detox</span>
+            <span class="du" style="font-size: clamp(8px, 1.5vw, 11px)">6 yrs</span>
+          </button>
+        </div>
+        <div class="subwrap float-sm" style="left: 72.6%; top: 68.6%; width: 30%; height: 30%; animation-delay: -2s">
+          <button class="bubble sub" onClick="{{openSenior}}" style="--tint: #FFD9A3; --hue: #FF9E1B">
+            <span class="nm" style="font-size: clamp(9px, 2.2vw, 16px); letter-spacing: -0.01em">Mobile apps dev</span>
+            <span class="du" style="font-size: clamp(8px, 1.6vw, 11px)">3 yrs 11 mos</span>
+          </button>
+        </div>
+      </div>
+      <div class="yr" style="margin-left: min(110px, 15vw)"><b>2016 — 2026</b><span>Mobile apps → Detox lead → Visual f/x</span></div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 24px; padding-right: 8%; margin-top: calc(-1 * min(40px, 5vw))">
+      <div class="yr r" style="text-align: right; align-items: flex-end"><b>2014 — 2015</b><span>Android</span></div>
+      <div class="float" style="width: min(164px, 24.6vw); height: min(164px, 24.6vw); flex: none; animation-delay: -4s">
+        <button class="bubble" onClick="{{openEme}}" style="--tint: #FFC9DF; --hue: #FF5FA2">
+          <span class="nm" style="font-size: clamp(10px, 2.7vw, 18px)">everything.me</span>
+          <span class="rl" style="font-size: clamp(9px, 1.7vw, 12px); font-weight: 400">Android Launcher</span>
+          <span class="du" style="font-size: clamp(8px, 1.6vw, 11px)">1 yr 9 mos</span>
+        </button>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 8px; padding-right: 12%">
+      <div class="float" style="width: min(186px, 28vw); height: min(186px, 28vw); flex: none; animation-delay: -6s">
+        <button class="bubble" onClick="{{openShaker}}" style="--tint: #BDF2D7; --hue: #2FD68A">
+          <span class="nm" style="font-size: clamp(12px, 3.6vw, 26px)">Scene53</span>
+          <span class="rl" style="font-size: clamp(9px, 1.7vw, 12px)">Shaker<span style="font-weight: 400"> &amp; Casa Casino</span></span>
+          <span class="du" style="font-size: clamp(8px, 1.6vw, 11px)">2 yrs 3 mos</span>
+        </button>
+      </div>
+      <div class="yr"><b>2011 — 2014</b><span>Back-end · Java</span></div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 24px; padding-right: 4%; margin-top: calc(-1 * min(30px, 4vw))">
+      <div class="yr r" style="text-align: right; align-items: flex-end"><b>2007 — 2011</b><span>Embedded · Telecom</span></div>
+      <div class="float" style="width: min(237px, 35.5vw); height: min(237px, 35.5vw); flex: none; animation-delay: -2.5s">
+        <button class="bubble" onClick="{{openOrckit}}" style="--tint: #CFE5FF; --hue: #5AA9FF">
+          <span class="nm" style="font-size: clamp(11px, 3vw, 21px)">Orckit-Corrigent</span>
+          <span class="rl" style="font-size: clamp(9px, 1.8vw, 13px)">Software Engineer</span>
+          <span class="du" style="font-size: clamp(8px, 1.7vw, 12px)">3 yrs 8 mos</span>
+        </button>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 24px; padding-left: 10%; margin-top: calc(-1 * min(50px, 6vw))">
+      <div class="float" style="width: min(277px, 41.5vw); height: min(277px, 41.5vw); flex: none; animation-delay: -5s">
+        <button class="bubble" onClick="{{openIdf}}" style="--tint: #E6D9FF; --hue: #B58CFF">
+          <span class="nm" style="font-size: clamp(16px, 5vw, 36px)">IDF</span>
+          <span class="rl" style="font-size: clamp(9px, 2vw, 14px)">Embedded RT systems</span>
+          <span class="du" style="font-size: clamp(8px, 1.8vw, 12px)">~5 yrs</span>
+        </button>
+      </div>
+      <div class="yr"><b>2002 — 2007</b><span>Israel Defense Forces</span></div>
+    </div>
+
+  </main>
+
+  <section class="sect" style="margin-top: 96px; padding-top: 32px; display: flex; flex-direction: column; gap: 20px">
+    <h2 class="fd" style="margin: 0; font-size: 32px">Education</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+      <div class="tile" style="padding: 24px; display: flex; flex-direction: column; gap: 6px">
+        <div class="fm muted" style="font-size: 13px">2005 — 2011</div>
+        <div style="font-weight: 700; font-size: 18px">The Open University of Israel</div>
+        <div class="soft" style="font-size: 15px">B.A. Computer Science, Summa Cum Laude</div>
+        <ul class="muted" style="margin: 4px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.55; display: flex; flex-direction: column; gap: 2px">
+          <li>Graduated with high distinction.</li>
+          <li>Awarded scholarship for Math courses.</li>
+          <li>Completed alongside full-time work as an embedded software engineer.</li>
+        </ul>
+      </div>
+      <div class="tile" style="padding: 24px; display: flex; flex-direction: column; gap: 6px">
+        <div class="fm muted" style="font-size: 13px">2000 — 2002</div>
+        <div style="font-weight: 700; font-size: 18px">Amal-Bet College for Practical Engineers</div>
+        <div class="soft" style="font-size: 15px">Practical Engineer, Computer Science</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" style="margin-top: 64px; padding-top: 32px; display: flex; flex-direction: column; gap: 20px">
+    <h2 class="fd" style="margin: 0; font-size: 32px">Core skills</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px">
+      <div class="tile" style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+        <span style="width: 18px; height: 18px; border-radius: 50%; background: #FFD400; border: 2px solid #17172B"></span>
+        <div style="font-weight: 700; font-size: 17px">Frontend &amp; motion</div>
+        <div class="soft" style="font-size: 14px; line-height: 1.5">UI animation, visual effects (shaders)</div>
+      </div>
+      <div class="tile" style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+        <span style="width: 18px; height: 18px; border-radius: 50%; background: #FF5FA2; border: 2px solid #17172B"></span>
+        <div style="font-weight: 700; font-size: 17px">Mobile</div>
+        <div class="soft" style="font-size: 14px; line-height: 1.5">Android, React Native, mobile app architecture</div>
+      </div>
+      <div class="tile" style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+        <span style="width: 18px; height: 18px; border-radius: 50%; background: #2FD68A; border: 2px solid #17172B"></span>
+        <div style="font-weight: 700; font-size: 17px">Mobile infrastructure</div>
+        <div class="soft" style="font-size: 14px; line-height: 1.5">Developer tools and experience</div>
+      </div>
+      <div class="tile" style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+        <span style="width: 18px; height: 18px; border-radius: 50%; background: #5AA9FF; border: 2px solid #17172B"></span>
+        <div style="font-weight: 700; font-size: 17px">Leadership</div>
+        <div class="soft" style="font-size: 14px; line-height: 1.5">Team lead for 6 years, open-source community stewardship</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<sc-if value="{{isOpen}}" hint-placeholder-val="{{ false }}">
+  <div class="scrim" onClick="{{close}}" onKeyDown="{{onKey}}" style="position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box">
+    <div class="card" role="dialog" aria-modal="true" aria-labelledby="dlg-title" onClick="{{stop}}" style="width: 100%; max-width: 560px; max-height: 88vh; overflow-y: auto; border-radius: 28px; box-sizing: border-box">
+      <div style="display: flex; align-items: flex-start; gap: 16px; padding: 28px 28px 20px">
+        <span style="width: 56px; height: 56px; border-radius: 50%; flex: none; background: {{sel.hue}}; border: 2px solid #17172B; box-shadow: 3px 4px 0 #17172B; box-sizing: border-box"></span>
+        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0">
+          <div class="fm muted" style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase">{{sel.org}}</div>
+          <h2 id="dlg-title" class="fd" style="margin: 0; font-size: 30px; line-height: 1.05">{{sel.title}}</h2>
+          <div class="soft" style="font-size: 15px">{{sel.period}}</div>
+        </div>
+        <button class="x" aria-label="Close" autoFocus="{{ true }}" onClick="{{close}}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </button>
+      </div>
+      <div style="padding: 0 28px 28px; display: flex; flex-direction: column; gap: 20px">
+        <sc-if value="{{sel.hasBlurb}}" hint-placeholder-val="{{ true }}">
+          <p class="muted" style="margin: 0; font-size: 15px; line-height: 1.55; font-style: italic">{{sel.blurb}}<sc-if value="{{sel.hasSrc}}" hint-placeholder-val="{{ false }}"> <a href="{{sel.srcHref}}" target="_blank" rel="noopener" style="font-style: normal; font-weight: 700; white-space: nowrap">{{sel.srcLabel}} ↗</a></sc-if></p>
+        </sc-if>
+        <sc-if value="{{sel.hasPoints}}" hint-placeholder-val="{{ true }}">
+          <ul class="soft" style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 1.55">
+            <sc-for list="{{sel.points}}" as="pt" hint-placeholder-count="1">
+              <li>{{pt}}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{sel.hasStats}}" hint-placeholder-val="{{ false }}">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+            <sc-for list="{{sel.stats}}" as="st" hint-placeholder-count="2">
+              <div style="background: {{sel.tint}}; border: 2px solid #17172B; box-shadow: 4px 4px 0 #17172B; border-radius: 18px; padding: 16px 18px; display: flex; flex-direction: column; gap: 2px">
+                <span class="fd" style="font-size: 36px; line-height: 1">{{st.num}}</span>
+                <span class="soft" style="font-size: 13px">{{st.label}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{sel.hasRoles}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; border-left: 2px dashed #17172B; margin-left: 6px">
+            <sc-for list="{{sel.roles}}" as="role" hint-placeholder-count="3">
+              <button class="rolebtn" onClick="{{role.go}}" style="all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 3px; padding: 10px 0 14px 20px; position: relative">
+                <span style="position: absolute; left: -9px; top: 14px; width: 16px; height: 16px; border-radius: 50%; background: {{sel.hue}}; border: 2px solid #17172B; box-sizing: border-box"></span>
+                <span class="rt" style="font-weight: 700; font-size: 16px">{{role.title}}</span>
+                <span class="fm muted" style="font-size: 12px">{{role.period}}</span>
+                <span class="soft" style="font-size: 14px">{{role.note}}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{sel.hasHighlights}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+<!--            <div class="fm muted" style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase">Also worth mentioning</div>-->
+            <sc-for list="{{sel.highlights}}" as="hl" hint-placeholder-count="2">
+              <div style="display: flex; align-items: flex-start; gap: 12px; background: #FFFFFF; border: 2px solid #17172B; border-radius: 16px; box-shadow: 3px 4px 0 #17172B; padding: 12px 16px; font-size: 15px; line-height: 1.45">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17172B" stroke-width="2.2" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z" fill="{{sel.hue}}"></path></svg>
+                <span>{{hl}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{sel.hasTags}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+            <sc-for list="{{sel.featured}}" as="ft" hint-placeholder-count="0">
+              <span class="chip" style="display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 500; padding: 5px 12px 5px 9px; border-radius: 999px; background: {{sel.tint}}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z" fill="{{sel.hue}}"></path></svg>{{ft}}</span>
+            </sc-for>
+            <sc-for list="{{sel.tags}}" as="tag" hint-placeholder-count="3">
+              <span class="chip" style="font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: 999px; background: {{sel.tint}}">{{tag}}</span>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{sel.hasLink}}" hint-placeholder-val="{{ false }}">
+          <a href="{{sel.href}}" target="_blank" rel="noopener" style="font-weight: 700; font-size: 15px">{{sel.linkLabel}} ↗</a>
+        </sc-if>
+        <sc-if value="{{sel.hasParent}}" hint-placeholder-val="{{ false }}">
+          <button class="back" onClick="{{openWix}}" style="align-self: flex-start; border-radius: 999px; padding: 0 18px; min-height: 44px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">← All Wix roles</button>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2300}}'>
+const DATA = window.CV_DATA;
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: null };
+    this.close = () => this.setState({ open: null });
+  }
+  open(id) { this.setState({ open: id }); }
+  renderVals() {
+    const id = this.state.open;
+    const d = DATA[id] || DATA.wix;
+    const roles = (d.roles || []).map((rid) => ({
+      title: DATA[rid].title, period: DATA[rid].period,
+      note: (DATA[rid].points || [])[0] || '',
+      go: () => this.open(rid)
+    }));
+    return {
+      isOpen: !!id,
+      sel: {
+        org: d.org, title: d.title, period: d.period, hue: d.c[0], tint: d.c[1],
+        blurb: d.blurb || '', hasBlurb: !!d.blurb,
+        srcHref: d.srcHref || '#', srcLabel: d.srcLabel || '', hasSrc: !!d.srcHref,
+        points: d.points || [], hasPoints: !!(d.points && d.points.length),
+        stats: d.stats || [], hasStats: !!(d.stats && d.stats.length),
+        roles, hasRoles: roles.length > 0,
+        highlights: d.highlights || [], hasHighlights: !!(d.highlights && d.highlights.length),
+        tags: d.tags || [], featured: d.featured || [],
+        hasTags: !!((d.tags && d.tags.length) || (d.featured && d.featured.length)),
+        href: d.href || '#', linkLabel: d.linkLabel || '', hasLink: !!d.href,
+        hasParent: !!d.parent
+      },
+      openWix: () => this.open('wix'), openStudio: () => this.open('studio'),
+      openDetox: () => this.open('detox'), openSenior: () => this.open('senior'),
+      openEme: () => this.open('eme'), openShaker: () => this.open('shaker'),
+      openOrckit: () => this.open('orckit'), openIdf: () => this.open('idf'),
+      close: this.close,
+      stop: (e) => e.stopPropagation(),
+      onKey: (e) => { if (e.key === 'Escape') this.close(); }
+    };
+  }
+}
+</script>
+</body>
+</html>
