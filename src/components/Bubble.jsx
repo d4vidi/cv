@@ -1,14 +1,15 @@
-// A clickable timeline bubble. `fonts` holds the clamp() sizes for the name, role and
-// duration lines, which are tuned per bubble size.
-export default function Bubble({ entry, fonts, sub = false, padding, nameSpacing, onOpen }) {
+// A timeline bubble: clickable in the interactive timeline, a plain graphic when `isStatic`.
+// `fonts` holds the sizes for the name, role and duration lines, which are tuned per bubble size.
+export default function Bubble({ entry, fonts, sub = false, padding, nameSpacing, onOpen, isStatic = false }) {
   const { bubble } = entry;
   const [hue, tint] = entry.c;
   const hasRole = bubble.role || bubble.roleNote;
+  const Tag = isStatic ? 'div' : 'button';
+  const interactive = isStatic ? {} : { 'aria-haspopup': 'dialog', onClick: onOpen };
   return (
-    <button
+    <Tag
       className={sub ? 'bubble sub' : 'bubble'}
-      aria-haspopup="dialog"
-      onClick={onOpen}
+      {...interactive}
       style={{ '--tint': tint, '--hue': hue, padding }}
     >
       <span className="nm" style={{ fontSize: fonts.name, letterSpacing: nameSpacing }}>{bubble.name}</span>
@@ -19,6 +20,6 @@ export default function Bubble({ entry, fonts, sub = false, padding, nameSpacing
         </span>
       )}
       <span className="du" style={{ fontSize: fonts.duration }}>{bubble.duration}</span>
-    </button>
+    </Tag>
   );
 }

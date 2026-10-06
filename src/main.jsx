@@ -7,6 +7,9 @@ import '@fontsource/dm-mono/400.css';
 import '@fontsource/dm-mono/500.css';
 import './styles/global.css';
 import App from './App.jsx';
+import { IS_STATIC } from './mode.js';
+
+if (IS_STATIC) document.documentElement.classList.add('static');
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
