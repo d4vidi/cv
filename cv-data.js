@@ -3,6 +3,9 @@ const C = {
   shaker: ['#2FD68A', '#BDF2D7'], orckit: ['#5AA9FF', '#CFE5FF'], idf: ['#B58CFF', '#E6D9FF']
 };
 
+window.CV_INTRO = `Accomplished software engineer with <strong>20+ years</strong> of cross-domain experience in <strong>UI motion &amp; visual effects</strong>, mobile development tools, <strong>Android</strong>, <strong>React Native</strong>, real-time backend and embedded systems.<br>
+Spent more than ten years at <strong>Wix</strong>, leading <a href="https://wix.github.io/Detox" target="_blank" rel="noopener" style="font-weight: 700">Detox</a>: the company’s flagship open-source project. Most recently directed UI motion &amp; visual effects initiatives within Wix’s Design Studio.`;
+
 window.CV_DATA = {
   wix: { org: 'Company · 10 yrs 5 mos', title: 'Wix', period: 'Feb 2016 — Jun 2026', c: C.wix,
     blurb: 'Global website-building platform, Tel Aviv. Creator of Detox: the pioneering open-source React Native apps test-automation framework.',
@@ -35,7 +38,7 @@ window.CV_DATA = {
     tags: ['Test automation', 'Open source'],
     featured: ['Team lead'],
     links: [
-        { href: 'https://github.com/wix/Detox', label: 'Detox (github)' },
+        { href: 'https://wix.github.io/Detox', label: 'Detox' },
         { href: 'https://wix-pilot.com/', label: 'Wix Pilot' },
     ]
   },
@@ -65,8 +68,8 @@ window.CV_DATA = {
     points: ['Back-end Java server developer for a real-time, multi-user social gaming system running virtual 3D environments.',
       'Bootstrapped Casa Casino, the evolution of the Shaker 3D environment.'],
     tags: ['Java', 'Back-end', 'Gaming'] },
-  orckit: { org: 'Orckit-Corrigent', title: 'Software Engineer', period: 'Oct 2007 — May 2011 · 3 yrs 8 mos', c: C.orckit,
-    blurb: 'Nasdaq- and TASE-listed vendor of MPLS / MPLS-TP packet transport network switches for telecom carriers.',
+  orckit: { org: 'Orckit-Corrigent', title: 'Embedded Systems Engineer', period: 'Oct 2007 — May 2011 · 3 yrs 8 mos', c: C.orckit,
+    blurb: 'Nasdaq- and TASE-listed vendor of broadband transport network switches for telecom carriers.',
     sources: [{ href: 'https://en.wikipedia.org/wiki/Orckit-Corrigent', label: 'Wikipedia' }],
     points: ['Developed drivers and hardware-supporting applications for embedded real-time broadband networking products'],
     tags: ['Drivers', 'Embedded RT', 'Broadband networking'] },

@@ -64,11 +64,11 @@ a{color:#2438C9}a:hover{color:#17172B}
     </div>
     <div style="display: flex; flex-direction: column; gap: 6px; max-width: 320px; font-size: 14px; line-height: 1.5; align-items: flex-start">
       <span class="fm muted" style="font-size: 13px">Israel</span>
-      <a href="https://www.linkedin.com/in/amit-davidi-6684a14/" target="_blank" rel="noopener" style="font-weight: 700; font-size: 15px">linkedin.com/in/amit-davidi-6684a14 ↗</a>
+      <a href="https://www.linkedin.com/in/amit-davidi-6684a14/" target="_blank" rel="noopener" style="font-weight: 700; font-size: 15px">Linkedin ↗</a>
     </div>
   </header>
 
-  <p class="lead soft" style="margin: -24px 0 72px; font-size: 19px; line-height: 1.7; max-width: 906px">Accomplished software engineer with <strong>20+ years</strong> of expertise in <strong>UI motion &amp; visual effects</strong>, mobile development tools, <strong>Android</strong>, <strong>React Native</strong>, real-time backends, and embedded systems.<br>Spent more than ten years at <strong>Wix</strong>, leading <a href="https://github.com/wix/detox" target="_blank" rel="noopener" style="font-weight: 700">Detox</a>: the company’s flagship open-source project. Most recently directed UI motion &amp; visual effects initiatives within Wix’s Design Studio.</p>
+  <p class="lead soft" style="margin: -24px 0 72px; font-size: 19px; line-height: 1.7; max-width: 906px">{{intro}}</p>
 
   <main style="display: flex; flex-direction: column">
 
@@ -153,7 +153,7 @@ a{color:#2438C9}a:hover{color:#17172B}
       <div class="tile" style="padding: 24px; display: flex; flex-direction: column; gap: 6px">
         <div class="fm muted" style="font-size: 13px">2005 — 2011</div>
         <div style="font-weight: 700; font-size: 18px">The Open University of Israel</div>
-        <div class="soft" style="font-size: 15px">B.A. Computer Science, Summa Cum Laude</div>
+        <div class="soft" style="font-size: 15px">B.A. Computer Science, <strong>Summa Cum Laude</strong></div>
         <ul class="muted" style="margin: 4px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.55; display: flex; flex-direction: column; gap: 2px">
           <li>Graduated with high distinction</li>
           <li>Awarded scholarship for Math courses</li>
@@ -281,8 +281,10 @@ a{color:#2438C9}a:hover{color:#17172B}
 </sc-if>
 
 </x-dc>
+
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2300}}'>
 const DATA = window.CV_DATA;
+const INTRO = React.createElement('span', { dangerouslySetInnerHTML: { __html: window.CV_INTRO } });
 
 class Component extends DCLogic {
   constructor(props) {
@@ -301,6 +303,7 @@ class Component extends DCLogic {
       go: () => this.open(rid)
     }));
     return {
+      intro: INTRO,
       isOpen: !!id,
       sel: {
         org: d.org, title: d.title, period: d.period, hue: d.c[0], tint: d.c[1],
@@ -326,5 +329,6 @@ class Component extends DCLogic {
   }
 }
 </script>
+
 </body>
 </html>
