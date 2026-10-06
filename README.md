@@ -1,21 +1,27 @@
-# Interactive CV · Pop hard-shadow — design reference
+# Interactive CV
 
-This is a design mockup created in a visual design tool, exported as a
-standalone page. Treat it as a REFERENCE MOCKUP, not production code:
-the markup and inline styles carry the design's precise values — colors,
-font sizes, spacing, radii, shadows, layout — which an implementation
-should replicate faithfully in its own components and styling system
-rather than copy wholesale.
+Amit Davidi's CV as a single interactive page: a timeline of floating "bubbles", one per
+employer or role, each opening a detail dialog. Built with React + Vite.
 
-## Contents
+## Development
 
-- `Pop.dc.html` — the artboard (a Design Component: an `<x-dc>`
-  template + a small logic class). The values to replicate live in its
-  inline `style="…"` attributes and the `<helmet><style>` block.
-- `support.js`, `vendor/react*.js` — the runtime that renders the
-  component in a browser; not part of the design.
+```sh
+yarn install
+yarn dev        # local dev server with hot reload
+yarn build      # static production build → dist/
+yarn preview    # serve dist/ locally
+```
 
-## Viewing
+`dist/` is fully static and uses relative paths, so it can be hosted from any path
+on any static host.
 
-Serve the folder (e.g. `python3 -m http.server`) and open `Pop.dc.html`;
-some browsers block the scripts over file://.
+## Where things live
+
+- `src/data/cv.js` holds all content: profile, timeline entries (bubble labels + dialog
+  details), education and skills.
+- `src/components/Intro.jsx` holds the intro paragraph (JSX, for the inline highlights).
+- `src/components/Timeline.jsx` holds the hand-tuned bubble layout (sizes, offsets, font sizes).
+- `src/styles/global.css` holds the visual styles.
+
+The original design export from Claude Design (`Pop.dc.html` + runtime) is in git history
+(commit `1eb7d0e`).
