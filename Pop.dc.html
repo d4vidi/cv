@@ -92,7 +92,7 @@ a{color:#2438C9}a:hover{color:#17172B}
           </button>
         </div>
         <div class="subwrap float-sm" style="left: 72.6%; top: 68.6%; width: 30%; height: 30%; animation-delay: -2s">
-          <button class="bubble sub" onClick="{{openSenior}}" style="--tint: #FFD9A3; --hue: #FF9E1B">
+          <button class="bubble sub" onClick="{{openMobileApps}}" style="--tint: #FFD9A3; --hue: #FF9E1B">
             <span class="nm" style="font-size: clamp(9px, 2.2vw, 16px); letter-spacing: -0.01em">Mobile apps dev</span>
             <span class="du" style="font-size: clamp(8px, 1.6vw, 11px)">3 yrs 11 mos</span>
           </button>
@@ -155,9 +155,9 @@ a{color:#2438C9}a:hover{color:#17172B}
         <div style="font-weight: 700; font-size: 18px">The Open University of Israel</div>
         <div class="soft" style="font-size: 15px">B.A. Computer Science, Summa Cum Laude</div>
         <ul class="muted" style="margin: 4px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.55; display: flex; flex-direction: column; gap: 2px">
-          <li>Graduated with high distinction.</li>
-          <li>Awarded scholarship for Math courses.</li>
-          <li>Completed alongside full-time work as an embedded software engineer.</li>
+          <li>Graduated with high distinction</li>
+          <li>Awarded scholarship for Math courses</li>
+          <li>Completed alongside full-time work in the tech industry</li>
         </ul>
       </div>
       <div class="tile" style="padding: 24px; display: flex; flex-direction: column; gap: 6px">
@@ -212,7 +212,7 @@ a{color:#2438C9}a:hover{color:#17172B}
       </div>
       <div style="padding: 0 28px 28px; display: flex; flex-direction: column; gap: 20px">
         <sc-if value="{{sel.hasBlurb}}" hint-placeholder-val="{{ true }}">
-          <p class="muted" style="margin: 0; font-size: 15px; line-height: 1.55; font-style: italic">{{sel.blurb}}<sc-if value="{{sel.hasSrc}}" hint-placeholder-val="{{ false }}"> <a href="{{sel.srcHref}}" target="_blank" rel="noopener" style="font-style: normal; font-weight: 700; white-space: nowrap">{{sel.srcLabel}} ↗</a></sc-if></p>
+          <p class="muted" style="margin: 0; font-size: 15px; line-height: 1.55; font-style: italic">{{sel.blurb}}<sc-for list="{{sel.sources}}" as="src" hint-placeholder-count="0"> <a href="{{src.href}}" target="_blank" rel="noopener" style="font-style: normal; font-weight: 700; white-space: nowrap">{{src.label}} ↗</a></sc-for></p>
         </sc-if>
         <sc-if value="{{sel.hasPoints}}" hint-placeholder-val="{{ true }}">
           <ul class="soft" style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 1.55">
@@ -265,8 +265,12 @@ a{color:#2438C9}a:hover{color:#17172B}
             </sc-for>
           </div>
         </sc-if>
-        <sc-if value="{{sel.hasLink}}" hint-placeholder-val="{{ false }}">
-          <a href="{{sel.href}}" target="_blank" rel="noopener" style="font-weight: 700; font-size: 15px">{{sel.linkLabel}} ↗</a>
+        <sc-if value="{{sel.hasLinks}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px">
+            <sc-for list="{{sel.links}}" as="lk" hint-placeholder-count="1">
+              <a href="{{lk.href}}" target="_blank" rel="noopener" style="font-weight: 700; font-size: 15px">{{lk.label}} ↗</a>
+            </sc-for>
+          </div>
         </sc-if>
         <sc-if value="{{sel.hasParent}}" hint-placeholder-val="{{ false }}">
           <button class="back" onClick="{{openWix}}" style="align-self: flex-start; border-radius: 999px; padding: 0 18px; min-height: 44px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">← All Wix roles</button>
@@ -290,6 +294,7 @@ class Component extends DCLogic {
   renderVals() {
     const id = this.state.open;
     const d = DATA[id] || DATA.wix;
+    const links = (d.links || []).filter((l) => l.href);
     const roles = (d.roles || []).map((rid) => ({
       title: DATA[rid].title, period: DATA[rid].period,
       note: (DATA[rid].points || [])[0] || '',
@@ -300,18 +305,18 @@ class Component extends DCLogic {
       sel: {
         org: d.org, title: d.title, period: d.period, hue: d.c[0], tint: d.c[1],
         blurb: d.blurb || '', hasBlurb: !!d.blurb,
-        srcHref: d.srcHref || '#', srcLabel: d.srcLabel || '', hasSrc: !!d.srcHref,
+        sources: d.sources || [],
         points: d.points || [], hasPoints: !!(d.points && d.points.length),
         stats: d.stats || [], hasStats: !!(d.stats && d.stats.length),
         roles, hasRoles: roles.length > 0,
         highlights: d.highlights || [], hasHighlights: !!(d.highlights && d.highlights.length),
         tags: d.tags || [], featured: d.featured || [],
         hasTags: !!((d.tags && d.tags.length) || (d.featured && d.featured.length)),
-        href: d.href || '#', linkLabel: d.linkLabel || '', hasLink: !!d.href,
+        links, hasLinks: links.length > 0,
         hasParent: !!d.parent
       },
       openWix: () => this.open('wix'), openStudio: () => this.open('studio'),
-      openDetox: () => this.open('detox'), openSenior: () => this.open('senior'),
+      openDetox: () => this.open('detox'), openMobileApps: () => this.open('mobileapps'),
       openEme: () => this.open('eme'), openShaker: () => this.open('shaker'),
       openOrckit: () => this.open('orckit'), openIdf: () => this.open('idf'),
       close: this.close,
