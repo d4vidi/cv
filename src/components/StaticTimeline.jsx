@@ -1,19 +1,17 @@
 import { CV } from '../data/cv.js';
 import Bubble from './Bubble.jsx';
-import EntryDetails, { Links, Points, Stats } from './EntryDetails.jsx';
+import EntryDetails, { Blurb, Points } from './EntryDetails.jsx';
 import { ROWS, YearLabel, fixedFonts } from './Timeline.jsx';
 
 const union = (...lists) => [...new Set(lists.flat().filter(Boolean))];
 
-// Fold the child roles' featured items, tags and highlights into their parent entry
+// Keep the page short: no stats, tags or external links (blurb sources stay inline)
+const compact = (entry) => ({ ...entry, stats: null, featured: null, tags: null, links: null });
+
+// Fold the child roles' highlights into their parent entry
 function mergeRoles(entry) {
   const kids = (entry.roles || []).map((rid) => CV[rid]);
-  return {
-    ...entry,
-    featured: union(entry.featured, ...kids.map((k) => k.featured)),
-    tags: union(entry.tags, ...kids.map((k) => k.tags)),
-    highlights: union(entry.highlights, ...kids.map((k) => k.highlights)),
-  };
+  return { ...entry, highlights: union(entry.highlights, ...kids.map((k) => k.highlights)) };
 }
 
 function RoleGroups({ entry }) {
@@ -30,8 +28,6 @@ function RoleGroups({ entry }) {
               <span className="fm muted" style={{ fontSize: 12 }}>{role.period}</span>
             </div>
             <Points points={role.points} />
-            <Stats stats={role.stats} tint={role.c[1]} />
-            <Links links={role.links} />
           </div>
         );
       })}
@@ -62,21 +58,24 @@ export default function StaticTimeline() {
     <main className="timeline stimeline">
       {ROWS.map((row, i) => {
         const base = CV[row.id];
-        const entry = base.roles ? mergeRoles(base) : base;
+        const entry = compact(base.roles ? mergeRoles(base) : base);
         return (
-          <section key={row.id} className={['srow', i % 2 && 'rev', entry.roles && 'long'].filter(Boolean).join(' ')}>
-            <div className="scol">
-              <StaticBubble row={row} />
-              <YearLabel entry={entry} />
-            </div>
-            <div className="tile spanel">
-              <div className="dlg-heading">
-                <div className="fm muted" style={{ fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{entry.org}</div>
-                <h3 className="fd" style={{ margin: 0, fontSize: 28, lineHeight: 1.05 }}>{entry.title}</h3>
-                <div className="soft" style={{ fontSize: 15 }}>{entry.period}</div>
+          <section key={row.id} className={['tile', 'scard', entry.roles && 'long'].filter(Boolean).join(' ')}>
+            <div className={i % 2 ? 'shead rev' : 'shead'}>
+              <div className="scol">
+                <StaticBubble row={row} />
+                <YearLabel entry={entry} />
               </div>
-              <EntryDetails entry={entry} roles={entry.roles && <RoleGroups entry={entry} />} />
+              <div className="sintro">
+                <div className="dlg-heading">
+                  <div className="fm muted" style={{ fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{entry.org}</div>
+                  <h3 className="fd" style={{ margin: 0, fontSize: 28, lineHeight: 1.05 }}>{entry.title}</h3>
+                  <div className="soft" style={{ fontSize: 15 }}>{entry.period}</div>
+                </div>
+                <Blurb entry={entry} />
+              </div>
             </div>
+            <EntryDetails entry={{ ...entry, blurb: null }} roles={entry.roles && <RoleGroups entry={entry} />} />
           </section>
         );
       })}

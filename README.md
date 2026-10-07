@@ -13,7 +13,8 @@ yarn preview    # serve dist/ locally
 ```
 
 Add `?static` to the URL (e.g. `http://localhost:5173/?static`) for a non-interactive
-single-pager: every entry's details sit next to its circle, with no dialogs and no animations.
+single-pager: every entry is a full-width card with its circle beside the headline, with no
+dialogs and no animations.
 It's laid out for A4 printing, so the browser's "Save as PDF" gives a clean 3-page CV.
 
 `dist/` is fully static and uses relative paths, so it can be hosted from any path

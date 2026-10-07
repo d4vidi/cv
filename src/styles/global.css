@@ -39,7 +39,7 @@ a{color:#2438C9}a:hover{color:#17172B}
 /* Page layout */
 .page{max-width:1080px;margin:0 auto;padding:72px 24px 96px;box-sizing:border-box}
 .header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px}
-.lead{margin:-24px 0 72px;font-size:19px;line-height:1.7;max-width:906px}
+.lead{margin:-24px 0 72px;font-size:19px;line-height:1.7}
 .timeline{display:flex;flex-direction:column}
 .trow{display:flex;align-items:center;gap:24px}
 .section{display:flex;flex-direction:column;gap:20px;padding-top:32px}
@@ -74,22 +74,24 @@ a{color:#2438C9}a:hover{color:#17172B}
 
 /* Static single pager (?static) */
 .static .bubble{cursor:default;transition:none}
-.static .bubble:hover,.static .bubble:active{background:var(--tint);transform:none;box-shadow:5px 6px 0 #17172B}
+.static .bubble:hover,.static .bubble:active{background:var(--tint);transform:none;box-shadow:5px 6px 0 #17172B;z-index:auto}
 .static .bubble.sub:hover,.static .bubble.sub:active{box-shadow:3px 4px 0 #17172B}
 .static .subwrap:hover{z-index:3}
-.stimeline{gap:40px}
-.srow{display:flex;align-items:flex-start;gap:40px}
-.srow.rev{flex-direction:row-reverse}
-.scol{width:360px;flex:none;display:flex;flex-direction:column;align-items:center;gap:28px;padding-top:12px}
+.stimeline{gap:32px}
+.scard{padding:24px 28px;display:flex;flex-direction:column;gap:20px}
+.shead{display:flex;align-items:center;gap:32px}
+.shead.rev{flex-direction:row-reverse}
+.scol{flex:none;display:flex;flex-direction:column;align-items:center;gap:20px}
 .scol .yr{align-items:center;text-align:center}
 .scol .yr b{align-self:center}
-.spanel{flex:1;min-width:0;padding:24px 28px;display:flex;flex-direction:column;gap:20px}
+.sintro{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
 .role-group{position:relative;display:flex;flex-direction:column;gap:12px;padding:10px 0 18px 20px}
 
 @media print{
   @page{size:A4;margin:10mm}
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
-  .static .page{max-width:none;padding:0;zoom:.75}
+  /* Right padding leaves room for the cards' drop shadows, which would otherwise be clipped at the page edge */
+  .static .page{max-width:none;padding:0 10px 0 0;zoom:.75}
   /* Rows with merged roles can exceed a page, so only their inner blocks stay whole */
-  .static .srow:not(.long),.static .tile:not(.spanel),.static .spanel>:not(.roles),.static .role-group,.static .highlight{break-inside:avoid}
+  .static .tile:not(.long),.static .scard>:not(.roles),.static .role-group,.static .highlight{break-inside:avoid}
 }

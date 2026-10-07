@@ -3,6 +3,18 @@
 
 const STAR = 'M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z';
 
+export function Blurb({ entry: d }) {
+  if (!d.blurb) return null;
+  return (
+    <p className="muted dlg-blurb">
+      {d.blurb}
+      {(d.sources || []).map((src) => (
+        <span key={src.href}> <a href={src.href} target="_blank" rel="noopener">{src.label} ↗</a></span>
+      ))}
+    </p>
+  );
+}
+
 export function Points({ points }) {
   if (!points?.length) return null;
   return (
@@ -44,14 +56,7 @@ export default function EntryDetails({ entry: d, roles = null }) {
   const tags = d.tags || [];
   return (
     <>
-      {d.blurb && (
-        <p className="muted dlg-blurb">
-          {d.blurb}
-          {(d.sources || []).map((src) => (
-            <span key={src.href}> <a href={src.href} target="_blank" rel="noopener">{src.label} ↗</a></span>
-          ))}
-        </p>
-      )}
+      <Blurb entry={d} />
 
       <Points points={d.points} />
       <Stats stats={d.stats} tint={tint} />

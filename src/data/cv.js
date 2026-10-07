@@ -45,7 +45,7 @@ export const CV = {
         'Led the team behind Detox, the company\'s highly popular flagship open-source project: An automation testing framework for React Native apps',
         'Developed high-complexity features and bugs',
         'Innovated the Wix pilot (AI testing) project',
-        'Spearheaded and led the mobile apps test guidelines formalization effort, in a cross-department effort',
+        'Spearheaded the mobile apps test guidelines formalization effort, in a cross-department effort',
     ],
     stats: [{ num: '12k', label: 'GitHub stars' }, { num: '500k+', label: 'downloads per week' }],
     tags: ['Test automation', 'Open source'],

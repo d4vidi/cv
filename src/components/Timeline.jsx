@@ -6,7 +6,7 @@ import Bubble from './Bubble.jsx';
 // Sizes are [px, vw] → min(px, vw); font sizes are [minPx, vw, maxPx] → clamp(...).
 // `staticScale` sizes the bubble in the static single pager, relative to its max size.
 export const ROWS = [
-  { id: 'wix', size: [400, 60], label: 'after', staticScale: 0.7,
+  { id: 'wix', size: [400, 60], label: 'after', staticScale: 0.55,
     row: { paddingLeft: '3%' }, yr: { marginLeft: 'min(110px, 15vw)' },
     fonts: { name: [24, 8.4, 64], role: [10, 2.2, 15], duration: [10, 2, 14] },
     satellites: [
