@@ -64,7 +64,7 @@ export default function StaticTimeline() {
             <div className={i % 2 ? 'shead rev' : 'shead'}>
               <div className="scol">
                 <StaticBubble row={row} />
-                <YearLabel entry={entry} />
+                <YearLabel entry={entry} caption={false} />
               </div>
               <div className="sintro">
                 <div className="dlg-heading">

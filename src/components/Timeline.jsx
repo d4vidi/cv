@@ -40,12 +40,12 @@ export const fluidFonts = (fonts) => mapFonts(fonts, ([min, vw, max]) => `clamp(
 // Fixed sizes for the static single pager (fonts never go below the design's minimum)
 export const fixedFonts = (fonts, scale) => mapFonts(fonts, ([min, , max]) => `${Math.max(min, max * scale)}px`);
 
-export function YearLabel({ entry, side, style }) {
+export function YearLabel({ entry, side, style, caption = true }) {
   const right = side === 'before';
   return (
     <div className={right ? 'yr r' : 'yr'} style={right ? { textAlign: 'right', alignItems: 'flex-end', ...style } : style}>
       <b>{entry.bubble.years}</b>
-      <span>{entry.bubble.caption}</span>
+      {caption && <span>{entry.bubble.caption}</span>}
     </div>
   );
 }
