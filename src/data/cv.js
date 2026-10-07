@@ -11,8 +11,9 @@ export const PROFILE = {
   name: 'Amit Davidi',
   headline: 'Frontend & Mobile Developer · Animation & Visual effects · Infrastructure & dev-tools',
   span: 'Curriculum vitae · 2002 — 2026',
-  location: 'Israel',
+  location: 'Tel Aviv, Israel',
   linkedin: 'https://www.linkedin.com/in/amit-davidi-6684a14/',
+  website: 'https://d4vidi.github.io/cv/',
 };
 
 export const CV = {

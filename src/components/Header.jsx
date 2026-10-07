@@ -12,6 +12,7 @@ export default function Header() {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 320, fontSize: 14, lineHeight: 1.5, alignItems: 'flex-start' }}>
         <span className="fm muted" style={{ fontSize: 13 }}>{PROFILE.location}</span>
+        <a href={PROFILE.website} target="_blank" rel="noopener" style={{ fontWeight: 700, fontSize: 15 }}>Interactive CV ↗</a>
         <a href={PROFILE.linkedin} target="_blank" rel="noopener" style={{ fontWeight: 700, fontSize: 15 }}>Linkedin ↗</a>
       </div>
     </header>
