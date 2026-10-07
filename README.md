@@ -20,6 +20,16 @@ It's laid out for A4 printing, so the browser's "Save as PDF" gives a clean 3-pa
 `dist/` is fully static and uses relative paths, so it can be hosted from any path
 on any static host.
 
+## Deploy
+
+Live at https://d4vidi.github.io/cv/ (and https://d4vidi.github.io/cv/?static).
+Every push to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`
+(repo Settings → Pages → Source must be set to "GitHub Actions").
+
+To use a custom domain later, add `public/CNAME` containing the domain, point its DNS at
+`d4vidi.github.io` (CNAME record, or GitHub's A records for an apex domain), and enable
+"Enforce HTTPS" in the Pages settings. No code changes needed.
+
 ## Where things live
 
 - `src/data/cv.js` holds all content: profile, timeline entries (bubble labels + dialog
