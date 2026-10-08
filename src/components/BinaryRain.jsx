@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const SIZE = 14; // Glyph size and column width, in CSS pixels
 const STEP_MS = 55; // Rain advances in discrete steps, like a terminal
@@ -8,15 +8,18 @@ const TRAIL = 'rgba(47,214,138,.5)';
 
 const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-// "Matrix"-like falling columns of 0s and 1s; renders only while `active` (a single still frame under reduced motion)
-export default function BinaryRain({ active }) {
+// "Matrix"-like falling columns of 0s and 1s; renders only while `active` (a single still frame under reduced motion).
+// `still` renders a single frame once, swapped for an image of it
+export default function BinaryRain({ active, still }) {
   const canvasRef = useRef(null);
+  const [snapshot, setSnapshot] = useState(null);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active && !still) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Snapshots are printed, so go beyond the screen's resolution
+    const dpr = still ? 3 : Math.min(window.devicePixelRatio || 1, 2);
     const w = canvas.clientWidth, h = canvas.clientHeight;
     canvas.width = w * dpr;
     canvas.height = h * dpr;
@@ -47,9 +50,24 @@ export default function BinaryRain({ active }) {
       });
     };
 
-    ctx.clearRect(0, 0, w, h);
-    if (REDUCED_MOTION.matches) {
+    // Fast-forward enough steps for the rain to fill the tile, with trails
+    const fill = () => {
       for (let i = 0; i < rows * 1.5; i++) step();
+    };
+
+    ctx.clearRect(0, 0, w, h);
+    if (still) {
+      let cancelled = false;
+      // Wait for the digits' font, or the snapshot freezes the fallback one
+      document.fonts.load(ctx.font).then(() => {
+        if (cancelled) return;
+        fill();
+        setSnapshot(canvas.toDataURL());
+      });
+      return () => { cancelled = true; };
+    }
+    if (REDUCED_MOTION.matches) {
+      fill();
       return;
     }
 
@@ -63,7 +81,7 @@ export default function BinaryRain({ active }) {
     };
     raf = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(raf);
-  }, [active]);
+  }, [active, still]);
 
-  return <canvas ref={canvasRef} className="fx-bg" aria-hidden="true" />;
+  return snapshot ? <img src={snapshot} className="fx-bg" alt="" /> : <canvas ref={canvasRef} className="fx-bg" aria-hidden="true" />;
 }

@@ -2,7 +2,7 @@ import { EDUCATION } from '../data/cv.js';
 
 export default function Education() {
   return (
-    <section className="sect section" style={{ marginTop: 64 }}>
+    <section className="sect section" style={{ marginTop: 32 }}>
       <h2 className="fd">Education</h2>
       <div className="tiles" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' }}>
         {EDUCATION.map((e) => (

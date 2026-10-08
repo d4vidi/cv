@@ -14,7 +14,7 @@ const TEAM = ['#FFF1A8', '#FFC9DF', '#CFE5FF', '#BDF2D7', '#E6D9FF'];
 
 export default function Skills() {
   return (
-    <section className="sect section" style={{ marginTop: 96 }}>
+    <section className="sect section" style={{ marginTop: 48 }}>
       <h2 className="fd">Core skills</h2>
       <div className="tiles" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
         {SKILLS.map((s) => <SkillTile key={s.title} skill={s} />)}
@@ -52,14 +52,17 @@ const splitTint = (tints) => tints.length === 1 ? tints[0]
 
 function SkillTile({ skill: s }) {
   const [hovered, setHovered] = useState(false);
-  const fx = IS_PRINTABLE ? null : s.fx;
+  // The printable version shows the effects' end state, statically (`still`)
+  const { fx } = s;
   const Background = BACKGROUNDS[fx];
+  const hoverable = Background && !IS_PRINTABLE;
 
   return (
-    <div className={`tile tile-body${fx ? ` fx-${fx}` : ''}`} style={{ gap: 10 }}
-      onPointerEnter={Background ? () => setHovered(true) : undefined}
-      onPointerLeave={Background ? () => setHovered(false) : undefined}>
-      {Background && <Background active={hovered} />}
+    <div className={`tile tile-body${fx ? ` fx-${fx}` : ''}${fx && IS_PRINTABLE ? ' still' : ''}`} style={{ gap: 10 }}
+      onPointerEnter={hoverable ? () => setHovered(true) : undefined}
+      onPointerLeave={hoverable ? () => setHovered(false) : undefined}>
+      {Background && <Background active={hovered} still={IS_PRINTABLE} />}
+      {fx === 'notification' && <span className="badge" aria-hidden="true">1</span>}
       {fx === 'team' && (
         <div className="team" aria-hidden="true">
           {TEAM.map((c) => <span key={c} style={{ '--c': c }} />)}

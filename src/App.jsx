@@ -4,6 +4,7 @@ import Intro from './components/Intro.jsx';
 import Timeline from './components/Timeline.jsx';
 import Education from './components/Education.jsx';
 import Skills from './components/Skills.jsx';
+import Hobbies from './components/Hobbies.jsx';
 import DetailDialog from './components/DetailDialog.jsx';
 import StaticTimeline from './components/StaticTimeline.jsx';
 import { IS_PRINTABLE } from './mode.js';
@@ -32,6 +33,7 @@ export default function App() {
         {IS_PRINTABLE ? <StaticTimeline /> : <Timeline onOpen={open} />}
         <Skills />
         <Education />
+        <Hobbies />
       </div>
       {!IS_PRINTABLE && openId && <DetailDialog id={openId} onOpen={open} onClose={close} />}
     </>

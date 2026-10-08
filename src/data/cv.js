@@ -51,7 +51,7 @@ export const CV = {
     ],
     stats: [{ num: '12k', label: 'GitHub stars' }, { num: '500k+', label: 'downloads per week' }],
     tags: ['Test automation', 'Open source'],
-    featured: ['Team lead'],
+    featured: ['Leadership'],
     links: [
         { href: 'https://wix.github.io/Detox', label: 'Detox' },
         { href: 'https://wix-pilot.com/', label: 'Wix Pilot' },
@@ -116,7 +116,13 @@ export const EDUCATION = [
 export const SKILLS = [
   // `fx`: hover effect of the skill's tile (see Skills.jsx)
   { title: 'Frontend', body: 'Animations, visual effects (e.g. shaders)', fx: 'plasma' },
-  { title: 'Mobile', body: 'Android, React Native, mobile app architecture', fx: 'ring' },
+  { title: 'Mobile', body: 'Android, React Native, mobile app architecture', fx: 'notification' },
   { title: 'Mobile infrastructure', body: 'Developer tools, velocity and experience', fx: 'binary' },
   { title: 'Leadership', body: 'Team lead for 6 years. Open-source community stewardship', fx: 'team' },
+];
+
+export const HOBBIES = [
+  { title: 'Family', body: 'A devoted husband and father' },
+  { title: 'Guitar', body: 'Highly skilled, technical guitar playing' },
+  { title: 'Fitness', body: 'Gym and fitness training' },
 ];

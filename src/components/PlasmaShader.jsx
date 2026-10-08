@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
 
@@ -27,23 +27,36 @@ void main(){
 
 const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-// Full-bleed WebGL background; renders only while `active` (a single still frame under reduced motion)
-export default function PlasmaShader({ active }) {
+const STILL_T = 3; // Moment of the animation captured by the `still` snapshot
+
+// Full-bleed WebGL background; renders only while `active` (a single still frame under reduced motion).
+// `still` renders a single frame once, swapped for an image of it (prints reliably, unlike WebGL canvases)
+export default function PlasmaShader({ active, still }) {
   const canvasRef = useRef(null);
   const glRef = useRef(null);
   const mouseRef = useRef([0, 0]);
+  const [snapshot, setSnapshot] = useState(null);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active && !still) return;
     const canvas = canvasRef.current;
     const gl = glRef.current ?? (glRef.current = init(canvas));
     if (!gl) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Snapshots are printed, so go beyond the screen's resolution
+    const dpr = still ? 3 : Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = canvas.clientWidth * dpr;
     canvas.height = canvas.clientHeight * dpr;
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.uniform2f(gl.u.r, canvas.width, canvas.height);
+
+    if (still) {
+      gl.uniform1f(gl.u.t, STILL_T);
+      gl.uniform2f(gl.u.m, 1e3, 1e3); // Cursor far away: no ripple
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      setSnapshot(canvas.toDataURL());
+      return;
+    }
 
     const onMove = (e) => {
       const b = canvas.getBoundingClientRect();
@@ -67,9 +80,9 @@ export default function PlasmaShader({ active }) {
       cancelAnimationFrame(raf);
       tile.removeEventListener('pointermove', onMove);
     };
-  }, [active]);
+  }, [active, still]);
 
-  return <canvas ref={canvasRef} className="fx-bg" aria-hidden="true" />;
+  return snapshot ? <img src={snapshot} className="fx-bg" alt="" /> : <canvas ref={canvasRef} className="fx-bg" aria-hidden="true" />;
 }
 
 function init(canvas) {
