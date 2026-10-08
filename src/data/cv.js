@@ -13,6 +13,7 @@ export const PROFILE = {
   span: 'Curriculum vitae · 2002 — 2026',
   location: 'Tel Aviv, Israel',
   linkedin: 'https://www.linkedin.com/in/amit-davidi-6684a14/',
+  github: 'https://github.com/d4vidi',
   website: 'https://d4vidi.github.io/cv/',
 };
 

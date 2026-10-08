@@ -79,6 +79,9 @@ a{color:#2438C9}a:hover{color:#17172B}
 .static .subwrap:hover{z-index:3}
 .static .header{margin-bottom:36px}
 .static .lead{margin-bottom:20px}
+.cv-link{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:8px;color:#4A4A63;text-decoration:none;font-size:16px}
+.cv-link-url{font-size:14px;font-weight:500;color:#2438C9;background:#FFF1A8;padding:1px 6px;border-radius:4px;text-decoration:underline;text-underline-offset:3px}
+.cv-link:hover .cv-link-url{color:#17172B}
 .stimeline{gap:32px}
 .scard{padding:24px 28px;display:flex;flex-direction:column;gap:20px}
 .shead{display:flex;align-items:center;gap:32px}
