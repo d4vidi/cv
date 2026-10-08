@@ -91,6 +91,9 @@ a{color:#2438C9}a:hover{color:#17172B}
 .scol .yr b{align-self:center}
 .sintro{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
 .role-group{position:relative;display:flex;flex-direction:column;gap:12px;padding:10px 0 18px 20px}
+/* Compact stat cards, tucked to the right of a role's title in the printable version */
+.stats.mini{display:flex;gap:10px}
+.stats.mini .stat{border-width:1.5px;box-shadow:2px 2px 0 #17172B;border-radius:10px;padding:6px 10px;flex-direction:row;align-items:baseline;gap:6px}
 
 @media print{
   @page{size:A4;margin:10mm}

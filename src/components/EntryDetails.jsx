@@ -24,14 +24,14 @@ export function Points({ points }) {
   );
 }
 
-export function Stats({ stats, tint }) {
+export function Stats({ stats, tint, mini = false }) {
   if (!stats?.length) return null;
   return (
-    <div className="stats">
+    <div className={mini ? 'stats mini' : 'stats'}>
       {stats.map((st) => (
         <div key={st.label} className="stat" style={{ background: tint }}>
-          <span className="fd" style={{ fontSize: 36, lineHeight: 1 }}>{st.num}</span>
-          <span className="soft" style={{ fontSize: 13 }}>{st.label}</span>
+          <span className="fd" style={{ fontSize: mini ? 18 : 36, lineHeight: 1 }}>{st.num}</span>
+          <span className="soft" style={{ fontSize: mini ? 11 : 13 }}>{st.label}</span>
         </div>
       ))}
     </div>

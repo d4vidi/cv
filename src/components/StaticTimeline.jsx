@@ -1,6 +1,6 @@
 import { CV } from '../data/cv.js';
 import Bubble from './Bubble.jsx';
-import EntryDetails, { Blurb, Points } from './EntryDetails.jsx';
+import EntryDetails, { Blurb, Points, Stats } from './EntryDetails.jsx';
 import { ROWS, YearLabel, fixedFonts } from './Timeline.jsx';
 
 const union = (...lists) => [...new Set(lists.flat().filter(Boolean))];
@@ -23,9 +23,12 @@ function RoleGroups({ entry }) {
         return (
           <div key={rid} className="role-group">
             <span className="role-dot" style={{ background: hue }} />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-              <span style={{ fontWeight: 700, fontSize: 16 }}>{role.title}</span>
-              <span className="fm muted" style={{ fontSize: 12 }}>{role.period}</span>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                <span style={{ fontWeight: 700, fontSize: 16 }}>{role.title}</span>
+                <span className="fm muted" style={{ fontSize: 12 }}>{role.period}</span>
+              </div>
+              <Stats stats={role.stats} tint={role.c[1]} mini />
             </div>
             <Points points={role.points} />
           </div>
