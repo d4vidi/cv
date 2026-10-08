@@ -50,6 +50,16 @@ export function Links({ links }) {
   );
 }
 
+// A tag pill; `featured` ones are prefixed with a star filled in `hue`
+export function Chip({ label, bg, featured = false, hue }) {
+  return (
+    <span className={featured ? 'chip featured' : 'chip'} style={{ background: bg }}>
+      {featured && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"><path d={STAR} fill={hue} /></svg>}
+      {label}
+    </span>
+  );
+}
+
 export default function EntryDetails({ entry: d, roles = null }) {
   const [hue, tint] = d.c;
   const featured = d.featured || [];
@@ -75,15 +85,8 @@ export default function EntryDetails({ entry: d, roles = null }) {
 
       {(featured.length > 0 || tags.length > 0) && (
         <div className="tags">
-          {featured.map((ft) => (
-            <span key={ft} className="chip featured" style={{ background: tint }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"><path d={STAR} fill={hue} /></svg>
-              {ft}
-            </span>
-          ))}
-          {tags.map((tag) => (
-            <span key={tag} className="chip" style={{ background: tint }}>{tag}</span>
-          ))}
+          {featured.map((ft) => <Chip key={ft} label={ft} featured bg={tint} hue={hue} />)}
+          {tags.map((tag) => <Chip key={tag} label={tag} bg={tint} />)}
         </div>
       )}
 

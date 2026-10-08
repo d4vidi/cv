@@ -30,8 +30,8 @@ export default function App() {
         <Header />
         <Intro />
         {IS_PRINTABLE ? <StaticTimeline /> : <Timeline onOpen={open} />}
-        <Education />
         <Skills />
+        <Education />
       </div>
       {!IS_PRINTABLE && openId && <DetailDialog id={openId} onOpen={open} onClose={close} />}
     </>

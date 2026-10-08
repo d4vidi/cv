@@ -20,7 +20,7 @@ export const PROFILE = {
 export const CV = {
   wix: { org: 'Company · 10 yrs 5 mos', title: 'Wix', period: 'Feb 2016 — Jun 2026', c: C.wix,
     bubble: { name: 'Wix', role: '3 major roles', duration: '10 yrs 5 mos',
-      years: '2016 — 2026', caption: 'Mobile apps → Detox lead → Visual f/x' },
+      years: '2016 — 2026', caption: 'Mobile apps → Detox lead → Visual fx' },
     blurb: 'Global website-building platform, Tel Aviv. Creator of Detox: the pioneering open-source React Native apps test-automation framework.',
     roles: ['studio', 'detox', 'mobileapps'],
     highlights: [
@@ -28,7 +28,7 @@ export const CV = {
       'Core participant in the MindShift Rehabilitation hackathon by the Ichilov innovation lab'
     ],
     featured: ['Leadership'],
-    tags: ['Android', 'React Native', 'Mobile apps', 'Test automation', 'Visual effects', 'Animations'] },
+    tags: ['Android', 'React Native', 'Mobile apps', 'Test automation', 'Visual effects', 'CSS Animations'] },
   studio: { org: 'Wix', title: 'Wix Design Studio', period: 'Jan 2026 — Jun 2026 · 6 mos', c: C.role, parent: 'wix',
     bubble: { name: 'Design Studio', duration: '6 mos' },
     points: [
@@ -63,7 +63,7 @@ export const CV = {
         'Android and React Native development across Wix’s mobile apps.',
         'Bootstrapped the react-native-notifications open source project',
     ],
-    tags: ['Android', 'React Native', 'Mobile apps'],
+    tags: ['Mobile apps', 'Android', 'React Native'],
     links: [
       { href: 'https://apps.apple.com/us/developer/wix-com-inc/id407141669', label: 'Apple app store'},
       { href: 'https://play.google.com/store/apps/developer?id=Wix.com,+INC.&hl=en', label: 'Google playstore'},
@@ -79,7 +79,7 @@ export const CV = {
         'Android developer of OS- and low-level features',
         'Developer of UI and app experience features',
     ],
-    tags: ['Android'] },
+    tags: ['Mobile apps', 'Android'] },
   shaker: { org: 'Scene53 (Shaker)', title: 'Back-end Engineer', period: 'Nov 2011 — Jan 2014 · 2 yrs 3 mos', c: C.shaker,
     bubble: { name: 'Scene53', role: 'Shaker', roleNote: ' & Casa Casino', duration: '2 yrs 3 mos',
       years: '2011 — 2014', caption: 'Back-end · Java' },
