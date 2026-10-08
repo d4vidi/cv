@@ -12,7 +12,7 @@ yarn build      # static production build → dist/
 yarn preview    # serve dist/ locally
 ```
 
-Add `?static` to the URL (e.g. `http://localhost:5173/?static`) for a non-interactive
+Add `?printable` to the URL (e.g. `http://localhost:5173/?printable`) for a non-interactive
 single-pager: every entry is a full-width card with its circle beside the headline, with no
 dialogs and no animations.
 It's laid out for A4 printing, so the browser's "Save as PDF" gives a clean 3-page CV.
@@ -22,7 +22,7 @@ on any static host.
 
 ## Deploy
 
-Live at https://d4vidi.github.io/cv/ (and https://d4vidi.github.io/cv/?static).
+Live at https://d4vidi.github.io/cv/ (and https://d4vidi.github.io/cv/?printable).
 Every push to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`
 (repo Settings → Pages → Source must be set to "GitHub Actions").
 

@@ -72,7 +72,7 @@ a{color:#2438C9}a:hover{color:#17172B}
 .links a{font-weight:700;font-size:15px}
 .back{align-self:flex-start;border-radius:999px;padding:0 18px;min-height:44px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
 
-/* Static single pager (?static) */
+/* Static single pager (?printable) */
 .static .bubble{cursor:default;transition:none}
 .static .bubble:hover,.static .bubble:active{background:var(--tint);transform:none;box-shadow:5px 6px 0 #17172B;z-index:auto}
 .static .bubble.sub:hover,.static .bubble.sub:active{box-shadow:3px 4px 0 #17172B}
