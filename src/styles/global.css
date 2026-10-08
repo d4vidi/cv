@@ -38,7 +38,7 @@ a{color:#2438C9}a:hover{color:#17172B}
 
 /* Page layout */
 .page{max-width:1080px;margin:0 auto;padding:72px 24px 96px;box-sizing:border-box}
-.header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px}
+.header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:36px}
 .lead{margin:-24px 0 72px;font-size:17px;line-height:1.6}
 .timeline{display:flex;flex-direction:column}
 .trow{display:flex;align-items:center;gap:24px}
