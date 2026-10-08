@@ -6,7 +6,7 @@ import Education from './components/Education.jsx';
 import Skills from './components/Skills.jsx';
 import DetailDialog from './components/DetailDialog.jsx';
 import StaticTimeline from './components/StaticTimeline.jsx';
-import { IS_STATIC } from './mode.js';
+import { IS_PRINTABLE } from './mode.js';
 
 export default function App() {
   const [openId, setOpenId] = useState(null);
@@ -29,11 +29,11 @@ export default function App() {
       <div className="page">
         <Header />
         <Intro />
-        {IS_STATIC ? <StaticTimeline /> : <Timeline onOpen={open} />}
+        {IS_PRINTABLE ? <StaticTimeline /> : <Timeline onOpen={open} />}
         <Education />
         <Skills />
       </div>
-      {!IS_STATIC && openId && <DetailDialog id={openId} onOpen={open} onClose={close} />}
+      {!IS_PRINTABLE && openId && <DetailDialog id={openId} onOpen={open} onClose={close} />}
     </>
   );
 }
