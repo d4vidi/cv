@@ -28,7 +28,7 @@ export const CV = {
       'Core participant in the MindShift Rehabilitation hackathon by the Ichilov innovation lab'
     ],
     featured: ['Leadership'],
-    tags: ['Android', 'React Native', 'Test automation', 'Visual effects', 'Animations'] },
+    tags: ['Android', 'React Native', 'Mobile apps', 'Test automation', 'Visual effects', 'Animations'] },
   studio: { org: 'Wix', title: 'Wix Design Studio', period: 'Jan 2026 — Jun 2026 · 6 mos', c: C.role, parent: 'wix',
     bubble: { name: 'Design Studio', duration: '6 mos' },
     points: [
@@ -63,7 +63,7 @@ export const CV = {
         'Android and React Native development across Wix’s mobile apps.',
         'Bootstrapped the react-native-notifications open source project',
     ],
-    tags: ['Android', 'React Native'],
+    tags: ['Android', 'React Native', 'Mobile apps'],
     links: [
       { href: 'https://apps.apple.com/us/developer/wix-com-inc/id407141669', label: 'Apple app store'},
       { href: 'https://play.google.com/store/apps/developer?id=Wix.com,+INC.&hl=en', label: 'Google playstore'},
@@ -114,8 +114,9 @@ export const EDUCATION = [
 ];
 
 export const SKILLS = [
-  { dot: '#FFD400', title: 'Frontend & motion', body: 'UI animation, visual effects (shaders)' },
-  { dot: '#FF5FA2', title: 'Mobile', body: 'Android, React Native, mobile app architecture' },
-  { dot: '#2FD68A', title: 'Mobile infrastructure', body: 'Developer tools and experience' },
-  { dot: '#5AA9FF', title: 'Leadership', body: 'Team lead for 6 years, open-source community stewardship' },
+  // `fx`: hover effect of the skill's tile (see Skills.jsx)
+  { title: 'Frontend', body: 'Animations, visual effects (e.g. shaders)', fx: 'plasma' },
+  { title: 'Mobile', body: 'Android, React Native, mobile app architecture', fx: 'ring' },
+  { title: 'Mobile infrastructure', body: 'Developer tools, velocity and experience', fx: 'binary' },
+  { title: 'Leadership', body: 'Team lead for 6 years. Open-source community stewardship', fx: 'team' },
 ];
