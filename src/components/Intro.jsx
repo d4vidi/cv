@@ -9,7 +9,7 @@ export default function Intro() {
         <strong>React Native</strong>, backend and real-time embedded systems.
         Spent more than 10 years at <strong>Wix</strong>, leading&nbsp;
           <strong><a href="https://wix.github.io/Detox" target="_blank" rel="noopener" style={{ fontWeight: 700 }}>Detox</a></strong>:
-        the company’s flagship open-source project. Most recently directed animations &amp; visual effects
+        the company’s popular, flagship open-source project. Most recently directed animations &amp; visual effects
         initiatives within Wix’s Design Studio.
       </p>
     </div>

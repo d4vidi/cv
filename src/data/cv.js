@@ -44,9 +44,9 @@ export const CV = {
   detox: { org: 'Wix', title: 'Detox Automation Framework', period: 'Jan 2020 — Dec 2025 · 6 yrs', c: C.role, parent: 'wix',
     bubble: { name: 'Detox', duration: '6 yrs' },
     points: [
-        'Led the team behind Detox, the company\'s highly popular flagship open-source project: An automation testing framework for React Native apps',
-        'Developed high-complexity features and bugs',
-        'Innovated the Wix pilot (AI testing) project',
+        'Led the team behind Detox, the company\'s popular, flagship open-source project: An automated-testing framework for React Native apps; The de-facto standard solution for many years.',
+        'Developed high-complexity features end-to-end and solved complex bugs',
+        'Innovated the Wix pilot (AI automated-testing) project',
         'Spearheaded the mobile apps test guidelines formalization effort, in a cross-department effort',
     ],
     stats: [{ num: '12k', label: 'GitHub stars' }, { num: '500k+', label: 'downloads per week' }],
