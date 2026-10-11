@@ -55,9 +55,11 @@ a{color:#2438C9}a:hover{color:#17172B}
 /* Team: avatars peek out from behind the tile's top edge (z-index:-1 paints them below the tile itself) */
 .fx-team{position:relative}
 .team{position:absolute;top:0;right:24px;z-index:-1;display:flex}
-.team span{width:28px;height:28px;margin-left:-8px;border-radius:50%;border:2px solid #17172B;box-sizing:border-box;
-  background:radial-gradient(circle at 36% 42%,#17172B 1.5px,transparent 2px),radial-gradient(circle at 64% 42%,#17172B 1.5px,transparent 2px),var(--c);
-  transform:translateY(4px);transition:transform .45s cubic-bezier(.3,1.6,.4,1)}
+.team span{position:relative;width:28px;height:28px;margin-left:-8px;border-radius:50%;border:2px solid #17172B;box-sizing:border-box;
+  background:var(--c);transform:translateY(4px);transition:transform .45s cubic-bezier(.3,1.6,.4,1)}
+/* Eyes as solid dots rather than transparent radial gradients, which some PDF viewers render as solid black */
+.team span::before,.team span::after{content:'';position:absolute;top:42%;left:36%;width:3.5px;height:3.5px;border-radius:50%;background:#17172B;transform:translate(-50%,-50%)}
+.team span::after{left:64%}
 .fx-team:hover .team span,.still .team span{transform:translateY(-20px)}
 /* The leader: larger and rising higher. Stacking runs front (leader) to back (right-most) */
 .team span:first-child{width:36px;height:36px;z-index:5}
