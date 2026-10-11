@@ -85,7 +85,7 @@ export default function DetailDialog({ id, onOpen, onClose }) {
           )} />
 
           {d.parent && (
-            <button className="back" onClick={() => onOpen(d.parent)}>← All {CV[d.parent].title} roles</button>
+            <button className="back" onClick={() => onOpen(d.parent)}>← All {CV[d.parent].org} roles</button>
           )}
         </div>
       </div>

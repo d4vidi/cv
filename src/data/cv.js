@@ -18,7 +18,7 @@ export const PROFILE = {
 };
 
 export const CV = {
-  wix: { org: 'Company · 10 yrs 5 mos', title: 'Wix', period: 'Feb 2016 — Jun 2026', c: C.wix,
+  wix: { org: 'Wix.com', title: 'Fullstack and Lead', period: 'Feb 2016 — Jun 2026 · 10 yrs 5 mos', c: C.wix,
     bubble: { name: 'Wix', role: '3 major roles', duration: '10 yrs 5 mos',
       years: 'Feb 2016 — Jun 2026', caption: 'Mobile apps → Detox lead → Visual fx' },
     blurb: 'Global website-building platform, Tel Aviv. Creator of Detox: the pioneering open-source React Native apps test-automation framework.',
