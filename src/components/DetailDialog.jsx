@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { CV } from '../data/cv.js';
 import EntryDetails from './EntryDetails.jsx';
 
@@ -45,7 +45,18 @@ export default function DetailDialog({ id, onOpen, onClose }) {
   const [hue] = d.c;
   const cardRef = useRef(null);
   const closeRef = useRef(null);
-  useModalBehaviour(cardRef, onClose);
+  const [closing, setClosing] = useState(false);
+
+  // Play the exit animation first; unmount (onClose) once it ends
+  const requestClose = useCallback(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) onClose();
+    else setClosing(true);
+  }, [onClose]);
+  const onAnimationEnd = (e) => {
+    if (closing && e.target === cardRef.current) onClose();
+  };
+
+  useModalBehaviour(cardRef, requestClose);
 
   // Focus the close button on open and whenever the dialog switches entry
   useEffect(() => {
@@ -56,8 +67,8 @@ export default function DetailDialog({ id, onOpen, onClose }) {
   const roles = (d.roles || []).map((rid) => ({ id: rid, ...CV[rid] }));
 
   return (
-    <div className="scrim" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div ref={cardRef} className="card" tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+    <div className={`scrim${closing ? ' closing' : ''}`} onClick={(e) => e.target === e.currentTarget && requestClose()}>
+      <div ref={cardRef} className="card" tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="dlg-title" onAnimationEnd={onAnimationEnd}>
         <div className="dlg-head">
           <span className="dlg-swatch" style={{ background: hue }} />
           <div className="dlg-heading">
@@ -65,7 +76,7 @@ export default function DetailDialog({ id, onOpen, onClose }) {
             <h2 id="dlg-title" className="fd" style={{ margin: 0, fontSize: 30, lineHeight: 1.05 }}>{d.title}</h2>
             <div className="soft" style={{ fontSize: 15 }}>{d.period}</div>
           </div>
-          <button ref={closeRef} className="x" aria-label="Close" onClick={onClose}>
+          <button ref={closeRef} className="x" aria-label="Close" onClick={requestClose}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
           </button>
         </div>
