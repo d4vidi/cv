@@ -107,6 +107,8 @@ a{color:#2438C9}a:hover{color:#17172B}
 .static .bubble:hover,.static .bubble:active{background:var(--tint);transform:none;box-shadow:5px 6px 0 #17172B;z-index:auto}
 .static .bubble.sub:hover,.static .bubble.sub:active{box-shadow:3px 4px 0 #17172B}
 .static .subwrap:hover{z-index:3}
+/* On screen, lay out exactly as printed (A4's 210mm minus the @page margins, at the print zoom), for a reliable preview */
+.static .page{max-width:none;width:calc(190mm / .75);padding:72px 10px 96px 0;zoom:.75}
 .static .header{margin-bottom:36px}
 .static .lead{margin-bottom:20px}
 .cv-link{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:8px;color:#4A4A63;text-decoration:none;font-size:16px}
@@ -129,7 +131,7 @@ a{color:#2438C9}a:hover{color:#17172B}
   @page{size:A4;margin:10mm}
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   /* Right padding leaves room for the cards' drop shadows, which would otherwise be clipped at the page edge */
-  .static .page{max-width:none;padding:0 10px 0 0;zoom:.75}
+  .static .page{width:auto;padding:0 10px 0 0}
   /* Rows with merged roles can exceed a page, so only their inner blocks stay whole */
   .static .tile:not(.long),.static .scard>:not(.roles),.static .role-group,.static .highlight{break-inside:avoid}
 }

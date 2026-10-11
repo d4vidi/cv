@@ -58,7 +58,7 @@ export const CV = {
     ]
   },
   mobileapps: { org: 'Wix', title: 'Mobile apps developer', period: 'Feb 2016 — Dec 2019 · 3 yrs 11 mos', c: C.role, parent: 'wix',
-    bubble: { name: 'Mobile apps dev', duration: '3 yrs 11 mos' },
+    bubble: { name: 'Mobile Apps', duration: '3 yrs 11 mos' },
     points: [
         'Android and React Native development across Wix’s mobile apps.',
         'Bootstrapped the react-native-notifications open source project',

@@ -6,10 +6,10 @@ export default function Header() {
     <header className="header">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: '1 1 420px' }}>
         <h1 className="fd" style={{ margin: 0, fontSize: 'clamp(48px, 9vw, 104px)', lineHeight: 0.92 }}>{PROFILE.name}</h1>
-        <p style={{ margin: IS_PRINTABLE ? 0 : '0 0 16px', fontSize: 18, fontWeight: 500 }}>{PROFILE.headline}</p>
+        <p style={{ margin: IS_PRINTABLE ? 0 : '0 0 16px', fontSize: 16, fontWeight: 500 }}>{PROFILE.headline}</p>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 320, fontSize: 14, lineHeight: 1.5, alignItems: 'flex-end' }}>
-        <div className="fm" style={{ fontSize: 13, background: '#17172B', color: '#FFFFFF', padding: '4px 12px', borderRadius: 999, marginBottom: 6, whiteSpace: 'nowrap' }}>
+        <div className="fm" style={{ fontSize: 12, background: '#17172B', color: '#FFFFFF', padding: '4px 12px', borderRadius: 999, marginBottom: 6, whiteSpace: 'nowrap' }}>
           {PROFILE.span}
         </div>
         <span className="fm muted" style={{ fontSize: 13 }}>{PROFILE.location}</span>
