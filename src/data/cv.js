@@ -20,7 +20,7 @@ export const PROFILE = {
 export const CV = {
   wix: { org: 'Company · 10 yrs 5 mos', title: 'Wix', period: 'Feb 2016 — Jun 2026', c: C.wix,
     bubble: { name: 'Wix', role: '3 major roles', duration: '10 yrs 5 mos',
-      years: '2016 — 2026', caption: 'Mobile apps → Detox lead → Visual fx' },
+      years: 'Feb 2016 — Jun 2026', caption: 'Mobile apps → Detox lead → Visual fx' },
     blurb: 'Global website-building platform, Tel Aviv. Creator of Detox: the pioneering open-source React Native apps test-automation framework.',
     roles: ['studio', 'detox', 'mobileapps'],
     highlights: [
@@ -72,7 +72,7 @@ export const CV = {
   },
   eme: { org: 'everything.me', title: 'Android Developer', period: 'Apr 2014 — Dec 2015 · 1 yr 9 mos', c: C.eme,
     bubble: { name: 'everything.me', roleNote: 'Android Launcher', duration: '1 yr 9 mos',
-      years: '2014 — 2015', caption: 'Android' },
+      years: 'Apr 2014 — Dec 2015', caption: 'Android' },
     blurb: 'Tel Aviv startup behind a contextual Android launcher, which sported a pioneering, feature-rich in-phone search, and predicted relevant apps by time, location and usage for millions of users.',
     sources: [{ href: 'https://techcrunch.com/?p=953581', label: 'TechCrunch' }],
     points: [
@@ -82,7 +82,7 @@ export const CV = {
     tags: ['Mobile apps', 'Android'] },
   shaker: { org: 'Scene53 (Shaker)', title: 'Back-end Engineer', period: 'Nov 2011 — Jan 2014 · 2 yrs 3 mos', c: C.shaker,
     bubble: { name: 'Scene53', role: 'Shaker', roleNote: ' & Casa Casino', duration: '2 yrs 3 mos',
-      years: '2011 — 2014', caption: 'Back-end · Java' },
+      years: 'Nov 2011 — Jan 2014', caption: 'Back-end · Java' },
     blurb: 'Winner of TechCrunch Disrupt SF 2011; Facebook-based 3D virtual social worlds, backed by Menlo Ventures.',
     sources: [{ href: 'https://techcrunch.com/2011/09/14/and-the-winner-of-techcrunch-disrupt-is-shaker', label: 'TechCrunch' }],
     points: ['Back-end Java server developer for a real-time, multi-user social gaming system running virtual 3D environments.',
@@ -90,7 +90,7 @@ export const CV = {
     tags: ['Java', 'Back-end', 'Gaming'] },
   orckit: { org: 'Orckit-Corrigent', title: 'Embedded Systems Engineer', period: 'Oct 2007 — May 2011 · 3 yrs 8 mos', c: C.orckit,
     bubble: { name: 'Orckit-Corrigent', role: 'Software Engineer', duration: '3 yrs 8 mos',
-      years: '2007 — 2011', caption: 'Embedded · Telecom' },
+      years: 'Oct 2007 — May 2011', caption: 'Embedded · Telecom' },
     blurb: 'Nasdaq and TASE-listed vendor of broadband transport network switches for telecom carriers.',
     sources: [{ href: 'https://en.wikipedia.org/wiki/Orckit-Corrigent', label: 'Wikipedia' }],
     points: ['Developed drivers and hardware-supporting applications for embedded real-time broadband networking products'],

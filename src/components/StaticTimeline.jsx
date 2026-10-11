@@ -67,15 +67,14 @@ export default function StaticTimeline() {
             <div className={i % 2 ? 'shead rev' : 'shead'}>
               <div className="scol">
                 <StaticBubble row={row} />
-                <YearLabel entry={entry} caption={false} />
               </div>
               <div className="sintro">
                 <div className="dlg-heading">
                   <div className="fm muted" style={{ fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{entry.org}</div>
                   <h3 className="fd" style={{ margin: 0, fontSize: 28, lineHeight: 1.05 }}>{entry.title}</h3>
-                  <div className="soft" style={{ fontSize: 15 }}>{entry.period}</div>
                 </div>
                 <Blurb entry={entry} />
+                <YearLabel entry={entry} caption={false} />
               </div>
             </div>
             <EntryDetails entry={{ ...entry, blurb: null }} roles={entry.roles && <RoleGroups entry={entry} />} />
