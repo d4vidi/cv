@@ -112,7 +112,7 @@ a{color:#2438C9}a:hover{color:#17172B}
 /* On screen, lay out exactly as printed (A4's 210mm minus the @page margins, at the print zoom), for a reliable preview */
 .static .page{max-width:none;width:calc(190mm / .75);padding:72px 10px 96px 0;zoom:.75}
 .static .header{margin-bottom:36px}
-.static .lead{margin-bottom:20px}
+.static .lead{margin-bottom:36px}
 .cv-link{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:8px;color:#4A4A63;text-decoration:none;font-size:16px}
 .cv-link-url{font-size:14px;font-weight:500;color:#2438C9;background:#FFF1A8;padding:1px 6px;border-radius:4px;text-decoration:underline;text-underline-offset:3px}
 .cv-link:hover .cv-link-url{color:#17172B}
