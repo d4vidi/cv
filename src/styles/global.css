@@ -104,6 +104,16 @@ a{color:#2438C9}a:hover{color:#17172B}
 .links a{font-weight:700;font-size:15px}
 .back{align-self:flex-start;border-radius:999px;padding:0 18px;min-height:44px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
 
+/* Mobile notice (narrow screens get a message instead of the CV) */
+.mobile{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}
+.mobile-card{position:relative;width:100%;max-width:360px;padding:56px 24px 28px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;animation:pop .5s cubic-bezier(.3,1.5,.4,1) both}
+.mobile-icon{position:absolute;top:-36px;width:72px;height:72px;border-radius:50%;border:2px solid #17172B;background:#FFF1A8;box-shadow:3px 4px 0 #17172B;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.mobile-name{margin:0;font-size:36px;line-height:1}
+.mobile-msg{margin:4px 0 0;font-size:20px;font-weight:500}
+.mobile-msg strong{font-weight:700;background:#FFF1A8;padding:0 6px;border-radius:4px}
+.mobile-hint{margin:0;font-size:12px;line-height:1.5}
+@media (prefers-reduced-motion: reduce){.mobile-card{animation:none}}
+
 /* Static single pager (?printable) */
 .static .bubble{cursor:default;transition:none}
 .static .bubble:hover,.static .bubble:active{background:var(--tint);transform:none;box-shadow:5px 6px 0 #17172B;z-index:auto}

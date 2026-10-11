@@ -7,6 +7,7 @@ import Skills from './components/Skills.jsx';
 import Hobbies from './components/Hobbies.jsx';
 import DetailDialog from './components/DetailDialog.jsx';
 import StaticTimeline from './components/StaticTimeline.jsx';
+import MobileNotice, { useIsMobile } from './components/MobileNotice.jsx';
 import { IS_PRINTABLE } from './mode.js';
 
 export default function App() {
@@ -24,6 +25,9 @@ export default function App() {
     triggerRef.current?.focus?.();
     triggerRef.current = null;
   }, []);
+
+  const isMobile = useIsMobile();
+  if (isMobile && !IS_PRINTABLE) return <MobileNotice />;
 
   return (
     <>
