@@ -53,7 +53,8 @@ a{color:#2438C9}a:hover{color:#17172B}
 
 /* Skill tile hover effects */
 .fx-plasma,.fx-binary{position:relative;overflow:hidden;isolation:isolate}
-/* Rounded by itself (the tile's inner radius): a parent's overflow clip misses composited canvases in some browsers */
+/* Rounded by itself (the tile's inner radius): a parent's overflow clip misses composited canvases in some browsers.
+   WebGL canvases may ignore even their own radius, so PlasmaShader also reads it and rounds in the shader */
 .fx-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:0;transition:opacity .4s ease;border-radius:18px}
 :hover>.fx-bg,.still>.fx-bg{opacity:1}
 /* Team: avatars peek out from behind the tile's top edge (z-index:-1 paints them below the tile itself) */
