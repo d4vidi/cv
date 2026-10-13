@@ -2,7 +2,39 @@ import { useEffect, useRef, useState } from 'react';
 
 const VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
 
-// Flowing pastel warp over the site's tints, with a ripple emanating from the cursor
+/**
+ * Flowing pastel warp over the site's tints, with a ripple emanating from the cursor.
+ *
+ * Below are notes about how this shader works at bird's eye view.
+ *
+ * ## Fundamental grounds: A base gradient
+ * - On the most fundamental level, in palette() and through sample_grad(), the shader
+ *   simply generates an imaginary gradient with 4 color stops. This gradient is the base for everything.
+ *   How is this done?
+ *   - `palette()` smoothes the gradient out by allowing for blending adjacent colors depending
+ *     on the sampled point's place in 0..1 range.
+ *   - The "last" grid section blends between the last and *first* colors so the gradient
+ *     is inherently circular.
+ * - By sampling the gradient (in `sample_grad()`) based on coordinates and time (`t` variable),
+ *   you get a static yet consistently shifting gradient.
+ *   **This is the fundamental form, leaving the mouse cursor out of the equation.** Use `sample_grad()` with
+ *   `p` instead of `q` and you'd see this.
+ *
+ * ## Mouse Cursor droplet effect
+ * - The final sampled gradient color is based not on 'p' (technically the raw `FragCoord`), but an
+ *   adjustment of it that we label as 'q'.
+ * - 'q' is in fact 'p' with radial shifting. We start from 'p', and add an adjustment based on the distance
+ *   of 'p' from mouse-cursor (size and direction). Since we send 'q' to `sample_grad()` rather than 'p', we
+ *   simply end up **sampling the base gradient a bit differently around the mouse cursor.** This is the key
+ *   to understanding the droplet effect.
+ *   - Using `exp(-d)` (i.e. `e^-d`) decays this shifting exponentially as distance grows, getting closer
+ *     and closer back to the original 'p'.
+ * - Since 'q' is inherently adjusted based on the distance from mouse-cursor, keeping the original direction,
+ *   we get a radial effect literally *around* the mouse cursor.
+ *
+ * _Note: This doesn't fully explain how the shader works, just portrays the conceptual model behind it.
+ * `plasma-shader.md` explain the details fairly._
+ */
 const FRAG = `
 precision mediump float;
 uniform vec2 r; // canvas size
@@ -26,27 +58,37 @@ vec3 palette(float d) {
       mix(c4,c1,d-3.);
 }
 
-// Rounded corners (anti-aliased), as a CSS clip on the canvas isn't honored reliably once it's composited
-float alpha(){
+// Return alpha as a binary 0 or 1, to enforce (anti-aliased) rounded corners (0 beyond radius).
+// This is required as a mere CSS clip on the canvas isn't honored reliably once it's composited.
+float alpha() {
   vec2 c = abs(gl_FragCoord.xy - r*.5) - r*.5 + rad;
   return clamp(.5 - (length(max(c,0.)) - rad), 0., 1.);
 }
 
-void main(){
+vec4 sample_grad(vec2 p) {
+  vec3 rgb = palette(.5 + .5*sin(p.x+p.y -.3*t) + .08*p.x);
+  float a = alpha();
+  return vec4(rgb, a);
+}
+
+void main() {
   vec2 p = (gl_FragCoord.xy*2.-r) / r.y;
   
+  // Compute q as a "distortion" of p, which is 'p' stretching out across the dynamic
+  // base gradient depending on the distance from mouse cursor (creating the radial 'droplet' effect).
   vec2 dm = p - m;
   float d = length(dm); // norm(dm)
-  vec2 dm_unit = dm / max(d, .001); // dm/norm(dm) = a pure direction vector (unit)
-  vec2 q = p + (.9*sin(d*9. - t*4.) * exp(-d*1.6)) * dm_unit;
+  float shift = (.9 * // Amplitude
+    sin(d*9. - t*4.) * // multiplier of 'd' controls number of ripples (sine frequency)
+    exp(-d*1.6)); // Expo decay of effect
+  vec2 dm_unit = dm / max(d, .001); // dm/norm(dm) = a pure direction (unit) vector
+  vec2 q = p + shift * dm_unit;
   for (int i=1;i<4;i++) {
     float f = float(i);
-    q+=vec2(sin(q.y*1.7*f+t*.6), cos(q.x*1.3*f-t*.5))*.35 / f;
+    q += (.35 / f) * vec2(sin(q.y*1.7*f+t*.6), cos(q.x*1.3*f-t*.5));
   }
   
-  vec3 rgb = palette(.25 + .75*sin(q.x+q.y -.3*t) + .08*q.x);
-  float a = alpha();
-  gl_FragColor = vec4(rgb, a);
+  gl_FragColor = sample_grad(q);
 }`;
 
 const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)');
