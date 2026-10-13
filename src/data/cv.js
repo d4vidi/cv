@@ -29,7 +29,7 @@ export const CV = {
     ],
     featured: ['Leadership'],
     tags: ['Android', 'React Native', 'Mobile apps', 'Test automation', 'Visual effects', 'CSS Animations'] },
-  studio: { org: 'Wix', title: 'Wix Design Studio', period: 'Jan 2026 — Jun 2026 · 6 mos', c: C.role, parent: 'wix',
+  studio: { org: 'Wix Design Studio', title: 'Frontend developer', period: 'Jan 2026 — Jun 2026 · 6 mos', c: C.role, parent: 'wix',
     bubble: { name: 'Design Studio', duration: '6 mos' },
     points: [
         'Directed animation and visual-effects development in Wix’s design studio',
@@ -41,7 +41,7 @@ export const CV = {
       { href: 'https://lnkd.in/p/eP3PyX34', label: 'Image scan effect', },
     ]
   },
-  detox: { org: 'Wix', title: 'Detox Automation Framework', period: 'Jan 2020 — Dec 2025 · 6 yrs', c: C.role, parent: 'wix',
+  detox: { org: 'Detox (Mobile Infra Group)', title: 'Team lead & tools developer', period: 'Jan 2020 — Dec 2025 · 6 yrs', c: C.role, parent: 'wix',
     bubble: { name: 'Detox', duration: '6 yrs' },
     points: [
         'Led the team behind Detox, the company\'s popular, flagship open-source project: An automated-testing framework for React Native apps; The de-facto standard solution for many years.',
@@ -57,7 +57,7 @@ export const CV = {
         { href: 'https://wix-pilot.com/', label: 'Wix Pilot' },
     ]
   },
-  mobileapps: { org: 'Wix', title: 'Mobile apps developer', period: 'Feb 2016 — Dec 2019 · 3 yrs 11 mos', c: C.role, parent: 'wix',
+  mobileapps: { org: 'Wix Mobile Apps', title: 'Mobile apps developer', period: 'Feb 2016 — Dec 2019 · 3 yrs 11 mos', c: C.role, parent: 'wix',
     bubble: { name: 'Mobile Apps', duration: '3 yrs 11 mos' },
     points: [
         'Android and React Native development across Wix’s mobile apps.',

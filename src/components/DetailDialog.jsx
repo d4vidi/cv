@@ -87,7 +87,7 @@ export default function DetailDialog({ id, onOpen, onClose }) {
               {roles.map((role) => (
                 <button key={role.id} className="rolebtn" onClick={() => onOpen(role.id)}>
                   <span className="role-dot" style={{ background: hue }} />
-                  <span className="rt" style={{ fontWeight: 700, fontSize: 16 }}>{role.title}</span>
+                  <span className="rt" style={{ fontWeight: 700, fontSize: 16 }}>{role.org}</span>
                   <span className="fm muted" style={{ fontSize: 12 }}>{role.period}</span>
                   <span className="soft" style={{ fontSize: 14 }}>{role.points?.[0] || ''}</span>
                 </button>

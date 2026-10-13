@@ -25,7 +25,7 @@ function RoleGroups({ entry }) {
             <span className="role-dot" style={{ background: hue }} />
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                <span style={{ fontWeight: 700, fontSize: 16 }}>{role.title}</span>
+                <span style={{ fontWeight: 700, fontSize: 16 }}>{role.org}</span>
                 <span className="fm muted" style={{ fontSize: 12 }}>{role.period}</span>
               </div>
               <Stats stats={role.stats} tint={role.c[1]} mini />
